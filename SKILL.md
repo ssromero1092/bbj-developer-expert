@@ -43,6 +43,9 @@ Flujo:
 - No asumir acceso a servidor, base de datos real ni sistemas completos.
 - No convertir soluciones BBj a otros lenguajes como sustitucion.
 - No hacer refactors amplios fuera del requerimiento.
+- No ejecutar `git commit` ni `git push` sin autorizacion explicita; un commit para programas y otro para documentacion.
+- Editar solo la copia de trabajo; la copia en uso se lee y compara, nunca se edita.
+- Marcar "sin verificar" toda sintaxis BBj que no se haya visto funcionando en el entorno del usuario.
 - No alterar formatos, precision, fechas o redondeos sin validar impacto.
 - En programas BBj con numeracion de lineas escrita en el codigo, tratar esa numeracion como referencia principal de analisis y cambio.
 - Mantener orden y correlacion de numeros de linea escritos (secuencia y consistencia de saltos) al proponer o implementar cambios.
@@ -84,6 +87,13 @@ Cuando el requerimiento sea agregar/modificar un campo con boton de ayuda:
 - [Rutinas reutilizables](./references/reusable-routines.md)
 - [Compatibilidad por version](./references/version-compatibility.md)
 - [Preguntas pendientes](./references/unresolved-questions.md)
+- [Trampas frecuentes de BBj](./references/bbj-pitfalls.md)
+- [Integracion de ventas con un ERP externo](./references/sales-integration-defontana.md)
+- [Integracion de compras con un ERP externo](./references/purchases-integration-defontana.md)
+
+## Herramientas
+- `tools/check_bbj_numbering.py <archivo.bbj>`: verifica numeracion ascendente, ASCII y destinos de salto. Usarla despues de cada edicion.
+- [Verificar numeracion y mantener copias](./workflows/verify-numbering-and-copies.md)
 
 ## Formato de salida recomendado
 Usar esta estructura para respuestas de analisis:

@@ -14,6 +14,7 @@ Skill global de GitHub Copilot para analisis y desarrollo de programas BASIS BBj
 - `references/`: patrones tecnicos y criterios de evidencia.
 - `knowledge/`: catalogo, convenciones y bitacora.
 - `examples/`: ejemplos y guias de captura.
+- `tools/`: herramientas reutilizables (verificador de numeracion).
 
 ## Uso
 En Copilot Chat:
