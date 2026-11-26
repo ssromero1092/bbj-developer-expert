@@ -46,6 +46,8 @@ Flujo:
 - No ejecutar `git commit` ni `git push` sin autorizacion explicita; un commit para programas y otro para documentacion.
 - Editar solo la copia de trabajo; la copia en uso se lee y compara, nunca se edita.
 - Marcar "sin verificar" toda sintaxis BBj que no se haya visto funcionando en el entorno del usuario.
+- Responder siempre en espanol.
+- Citar siempre por numero interno de linea (por ejemplo `PRO240 3640`) y, en el resumen final, declarar "correlacion de numeracion verificada" cuando se haya usado `tools/check_bbj_numbering.py`.
 - No alterar formatos, precision, fechas o redondeos sin validar impacto.
 - En programas BBj con numeracion de lineas escrita en el codigo, tratar esa numeracion como referencia principal de analisis y cambio.
 - Mantener orden y correlacion de numeros de linea escritos (secuencia y consistencia de saltos) al proponer o implementar cambios.

@@ -9,6 +9,7 @@
 - Convenciones confirmadas: copia de trabajo vs copia en uso, commits solo a pedido, ASCII.
 ### Changed
 - `SKILL.md`: referencias nuevas, herramientas y reglas de commit y copias.
+- `SKILL.md`: responder siempre en espanol y citar por numero interno de linea.
 
 ## [0.1.0] - 2026-11-02
 ### Added
