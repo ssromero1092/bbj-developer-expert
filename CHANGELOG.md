@@ -10,6 +10,7 @@
 ### Changed
 - `SKILL.md`: referencias nuevas, herramientas y reglas de commit y copias.
 - `SKILL.md`: responder siempre en espanol y citar por numero interno de linea.
+- `SKILL.md`: al invocar la skill en una sesion nueva, sincronizar el repositorio con `git fetch` y `git pull --ff-only`.
 
 ## [0.1.0] - 2026-11-02
 ### Added

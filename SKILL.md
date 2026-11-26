@@ -53,6 +53,10 @@ Flujo:
 - Mantener orden y correlacion de numeros de linea escritos (secuencia y consistencia de saltos) al proponer o implementar cambios.
 - No usar como unica referencia las lineas del IDE cuando exista numeracion interna BBj en el archivo.
 - En cambios de campos con ayuda (GZOOM/GZOOMWD/GZOOMLH o similares), tratar el cambio como dependiente de maestros y de formato/estructura de archivo.
+- En la primera invocacion de la skill en una nueva sesion, verificar una sola vez la sincronizacion del repositorio antes de analizar o editar.
+- Si el repositorio es Git y el remoto tiene cambios, ejecutar solo: git fetch origin y luego git pull --ff-only origin master.
+- No ejecutar git push, git merge, git commit, git rebase ni cambiar ramas protegidas sin autorizacion explicita del usuario.
+- Si hay cambios locales sin confirmar, no hacer pull automatico; informar que el repo esta sucio y esperar instruccion.
 - Si falta informacion critica, declarar incertidumbre y preguntar.
 
 ## Regla especial: campo con ayuda de maestro
