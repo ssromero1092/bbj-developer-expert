@@ -15,6 +15,13 @@ Registrar solo convenciones confirmadas por el usuario o con evidencia suficient
 | Textos propios en ASCII; archivos `.bbj` ASCII con fin de linea LF | confirmada | Regla del usuario | Conversacion |
 | Los repositorios con datos del cliente son privados y deben seguir siendolo | confirmada | Regla del usuario | Conversacion |
 | Documentar cada cambio en una bitacora del proyecto, marcando lo "sin verificar" | confirmada | Practica constante | Conversacion |
+| No usar `BBTranslator`/`getTranslation`: deprecado y no funciona en ningun sistema BBj de la empresa; mensajes con texto directo | confirmada | Dicho por el usuario (2026-11-26) | Conversacion |
+| Conversion metacaracter a grafico: editar solo `pgms/` (copia de `metacaracter/pgms/`), crear `brc/esp/x.arc`, conservar la logica y seguir el patron visual de un programa grafico de referencia | confirmada | Requerimiento del usuario (MAE330) | Conversacion |
+| En el `.arc` las etiquetas llevan solo el nombre del campo, sin numeros ("1.", "2.") | confirmada | Pedido del usuario | Conversacion |
+| En un mantenedor, el ultimo campo (y cualquier campo si el registro ya existe) llama a la rutina de grabar al dar Enter | confirmada | Pedido del usuario | Conversacion |
+| Usar la misma ayuda (GZOOM/GZOOMLH/GZOOM2) que usa el programa original | confirmada | Pedido del usuario | Conversacion |
+| Botones de acciones extra (copiar, actualizar) con icono `.bmp` propio (`COPIAR.bmp`, `ACTUALIZA.bmp`) | confirmada | Pedido del usuario | Conversacion |
+| Rutas de prueba en PC local dentro de un programa (p. ej. una ruta de maestros con unidad y carpeta fijas) se dejan como estan | confirmada | Respuesta del usuario | Conversacion |
 
 ## Convenciones pendientes de confirmar
 | Tema | Hipotesis | Que falta confirmar |

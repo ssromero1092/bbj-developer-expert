@@ -11,6 +11,8 @@ Indice de patrones detectados en programas de referencia.
 | Dos grillas (listado ordenable y detalle) con variable de grilla activa | patron observado | CON214.bbj 21070-21084 | probado en produccion | alta | references/ui-patterns.md |
 | Cuadratura contra el sistema externo con tolerancia | patron observado | ADQ160.bbj 40900-40940 | probado en produccion | alta | references/purchases-integration-defontana.md |
 | Ingreso sin el servicio externo (degradacion controlada) | patron observado | CON214.bbj 24350-24356 | probado en produccion | alta | references/purchases-integration-defontana.md |
+| Mantenedor simple grafico: EVENTOS + rutina por campo + botones en MENU_SUPERIOR + ultimo campo llama a GRABA | patron observado | MAE420.bbj 0041-0099, 9450-9570 | usado como plantilla de MAE330 (sin probar en servidor) | media | references/metacaracter-to-graphic-simple.md |
+| Sub-flujo extra con panel de controles INVISIBLE en la misma ventana, mostrado con un boton | hipotesis | MAE330.bbj 8000-8925 | sin probar | baja | references/metacaracter-to-graphic-simple.md |
 
 ## Tipos permitidos
 - patron observado

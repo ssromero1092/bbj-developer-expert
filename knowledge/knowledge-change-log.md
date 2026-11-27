@@ -13,6 +13,8 @@ Bitacora de actualizaciones de la skill y su base de conocimiento.
 | 2026-11-26 | references/purchases-integration-defontana.md, sales-integration-defontana.md, bbj-pitfalls.md | Documentos de integracion de compras y ventas (sin credenciales ni URL) y trampas de BBj | Conocimiento acumulado en la copia local de la skill | Proyecto del usuario | si |
 | 2026-11-26 | tools/check_bbj_numbering.py, workflows/verify-numbering-and-copies.md | Verificador de numeracion y regla de dos copias | Evito errores repetidos de numeracion y de saltos | Proyecto de compras | si |
 | 2026-11-26 | knowledge/user-conventions.md, source-program-catalog.md, discovered-patterns.md, verified-capabilities.md, SKILL.md, README.md | Convenciones confirmadas, catalogo, patrones y capacidades verificadas | Cierre del proyecto de compras | Proyecto de compras | si |
+| 2026-11-26 | workflows/convert-metacaracter-to-graphic.md, references/metacaracter-to-graphic-simple.md, SKILL.md, README.md, CHANGELOG.md | Flujo y receta para convertir metacaracter a grafico (mantenedor simple) | Primera conversion hecha: MAE330 (primer cliente) (sin probar en servidor) | Conversacion, MAE330 y MAE420 | si |
+| 2026-11-26 | knowledge/user-conventions.md, source-program-catalog.md, discovered-patterns.md, verified-capabilities.md | Convenciones (sin Translator, etiquetas sin numeros, grabar al Enter...), catalogo, patrones y capacidades sin verificar | Decisiones del usuario durante la conversion de MAE330 | Conversacion | si |
 
 ## Regla
 No reemplazar conocimiento previo sin registrar motivo y evidencia.
