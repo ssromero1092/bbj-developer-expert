@@ -7,6 +7,7 @@ Skill global de GitHub Copilot para analisis y desarrollo de programas BASIS BBj
 - Propuestas tecnicas antes de implementar.
 - Reglas para numeracion interna BBj y correlacion de lineas.
 - Manejo de campos con ayuda (GZOOM) y dependencia de maestros/layouts.
+- Conversion de programas de metacaracter a grafico (`workflows/convert-metacaracter-to-graphic.md`). Hoy esta documentado el tipo "mantenedor simple"; faltan mantenedores complejos (grillas) e informes.
 
 ## Estructura
 - `SKILL.md`: reglas y flujo principal.

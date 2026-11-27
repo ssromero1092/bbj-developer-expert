@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.0] - 2026-11-26
+### Added
+- `workflows/convert-metacaracter-to-graphic.md`: flujo para convertir programas de metacaracter a grafico, con los 3 tipos de pantalla (simple, complejo, informes) y las reglas acordadas.
+- `references/metacaracter-to-graphic-simple.md`: receta del mantenedor simple (equivalencias, esqueleto de MAE420, ayudas, sub-flujos, verificaciones, trampas), basada en MAE330 (primer cliente).
+### Changed
+- `SKILL.md`, `README.md`: enlaces y regla de no usar `Translator`.
+- `knowledge/*`: convenciones, catalogo, patrones, capacidades y bitacora.
+
 ## [0.2.0] - 2026-11-26
 ### Added
 - Documentos de integracion: compras y ventas con un ERP externo (sin credenciales ni URL).

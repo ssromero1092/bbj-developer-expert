@@ -25,6 +25,7 @@ Usar esta skill cuando se necesite:
 - Revisar riesgos, regresiones y dependencias de un cambio.
 - Explicar funcionamiento de rutinas BBj existentes.
 - Implementar cambios solo despues de autorizacion explicita del usuario.
+- **Convertir un programa de metacaracteres a grafico** (ventanas, botones, `.arc`) conservando la logica de negocio: ver [convertir de metacaracter a grafico](./workflows/convert-metacaracter-to-graphic.md).
 
 ## Modo obligatorio: REVIEW FIRST
 No modificar archivos automaticamente.
@@ -74,6 +75,9 @@ Cuando el requerimiento sea agregar/modificar un campo con boton de ayuda:
 4. Si hay autorizacion explicita, seguir [implementacion aprobada](./workflows/implement-approved-change.md).
 5. Cerrar con [revision de cambios](./workflows/review-changes.md).
 
+### Si el requerimiento es pasar un programa de metacaracter a grafico
+Seguir [convertir de metacaracter a grafico](./workflows/convert-metacaracter-to-graphic.md) (clasifica el tipo de pantalla y fija las reglas) y, para mantenedores simples, la receta [metacaracter a grafico: mantenedor simple](./references/metacaracter-to-graphic-simple.md). El usuario entrega el programa en `metacaracter/pgms/`; se edita solo la copia en `pgms/` y se crea el `.arc` en `brc/esp/`, tomando como patron visual el programa grafico de referencia que el usuario indique. **No usar `Translator`/`getTranslation`** (deprecado, no funciona en ningun sistema BBj de la empresa).
+
 ## Base de conocimiento interna
 - Inventario de fuentes: [catalogo de programas](./knowledge/source-program-catalog.md)
 - Indice de patrones: [patrones descubiertos](./knowledge/discovered-patterns.md)
@@ -89,6 +93,7 @@ Cuando el requerimiento sea agregar/modificar un campo con boton de ayuda:
 - [Patrones de logica de negocio](./references/business-logic-patterns.md)
 - [Patrones de archivos I/O](./references/file-io-patterns.md)
 - [Patrones de interfaz .arc](./references/ui-patterns.md)
+- [Metacaracter a grafico: mantenedor simple](./references/metacaracter-to-graphic-simple.md)
 - [Manejo de errores](./references/error-handling.md)
 - [Rutinas reutilizables](./references/reusable-routines.md)
 - [Compatibilidad por version](./references/version-compatibility.md)
