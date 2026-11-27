@@ -7,6 +7,7 @@
 ### Changed
 - `SKILL.md`, `README.md`: enlaces y regla de no usar `Translator`.
 - `knowledge/*`: convenciones, catalogo, patrones, capacidades y bitacora.
+- La receta de mantenedor simple queda marcada como probada en el servidor (MAE330).
 
 ## [0.2.0] - 2026-11-26
 ### Added

@@ -1,6 +1,6 @@
 # Receta: mantenedor simple de metacaracter a grafico
 
-Origen: conversion de MAE330 (mantencion de dosificacion de productos) usando MAE420 como patron grafico. **Estado: implementado, sin probar en el servidor** (2026-11-26). Todo lo que dependa de eso esta marcado "sin verificar".
+Origen: conversion de MAE330 (mantencion de dosificacion de productos) usando MAE420 como patron grafico. **Estado: implementado y probado por el usuario en el servidor, todo funciona OK** (2026-11-26).
 
 Aplica a pantallas donde se captura una clave (area, grupo, producto...), se lee/graba **un registro** y hay unas pocas opciones (modificar, eliminar, copiar, listar). Ver el tipo en `workflows/convert-metacaracter-to-graphic.md`.
 
@@ -47,7 +47,7 @@ Ayuda 131, Cancelar 132, Salir 134, Guardar 135, Borrar 133, Imprimir 136, mas l
 
 ## 4. Impresion y Excel
 - Se conecta el listado existente al boton Imprimir: `GOSUB ABRE_IMPRE_VIEW` (patron MAE420 11290-11660) en lugar de abrir `P2`; `LLENA_DISPO` -> `CALL "GIMPRIME.bbj",118,GUI` carga la lista de impresoras.
-- Ajustar `COLS=` de `ABRE_IMPRE_VIEW` al ancho del listado (MAE420 usa 170; MAE330 necesita 200 porque imprime 190 columnas). **Sin verificar** como se ve.
+- Ajustar `COLS=` de `ABRE_IMPRE_VIEW` al ancho del listado (MAE420 usa 170; MAE330 necesita 200 porque imprime 190 columnas). Verificado en el servidor (se ve bien).
 - Mensajes de `INPUT ... OBSERVACION` del listado/Excel -> `MSGBOX` con texto directo.
 
 ## 5. Ayudas (GZOOM) en grafico
@@ -56,12 +56,12 @@ Regla del usuario: usar **la misma ayuda que usa el programa original**.
 |---|---|
 | `GZOOMLH` (productos) | `GOSUB DISWIN; CALL "GZOOMLH.bbj",2,"",MAEPROD,10,2,X0$,"","MAESTRO ..."; GOSUB ENWIN` (ADQ160 2821). **No** cambiarlo por GZOOMWD1. |
 | `GZOOM2` (areas/centros de costo) | `CALL "GZOOM2.bbj",20,1,50,22,"< TITULO >",ARCH,0,X0$,PREFIJO$,LLAVE,"0102","0230","F0402  ",Window!,sysgui!,1,myAPI!` (ADQ160 3215, MAE420 4145) |
-| `GZOOM` (tabla `MAETABL` por codigo) | `GOSUB DISWIN; CALL "GZOOMWD1.bbj",20,1,50,22,"O.CTITULO",MAETABL,LLAVE,X0$,"010315020130","01^35",EXCL$,Window!,sysgui!,1,myAPI!; GOSUB ENWIN` (patron MAE420 1315). Sin verificar con la tabla "35" de objetivos. |
+| `GZOOM` (tabla `MAETABL` por codigo) | `GOSUB DISWIN; CALL "GZOOMWD1.bbj",20,1,50,22,"O.CTITULO",MAETABL,LLAVE,X0$,"010315020130","01^35",EXCL$,Window!,sysgui!,1,myAPI!; GOSUB ENWIN` (patron MAE420 1315). Probado en el servidor con la tabla "35" de objetivos. |
 | Alta de maestro inexistente `CALL "MAE108"` | `sysgui!.flushEvents(); CALL "MAE108.bbj",1,""; PRINT(GUI)'CONTEXT'(0),'FOCUS'(id)` (y `MAE105`, `MAE109`, `MAE410` segun el maestro) |
-`INCL$`/`EXCL$` se dejaron en `""`: no se vio donde otros programas los inicializan (**sin verificar**).
+`INCL$`/`EXCL$` se dejaron en `""`: no se vio donde otros programas los inicializan; en el servidor funciono asi.
 
 ## 6. Sub-flujos extra (copiar, actualizar)
-- En MAE330 el sub-flujo de **copia** (otro conjunto de campos) se resolvio con un **panel de controles `INVISIBLE` en la misma ventana** (ids 181-196) que se muestra/oculta con `Window!.getControl(n).setVisible(0/1)` al pulsar el boton Copiar; Cancelar lo cierra. Motivo: el cambio de contexto de una 2da ventana (como la 102 de ADQ160) no estaba verificado en este entorno. **Sin verificar** `setVisible` en este uso.
+- En MAE330 el sub-flujo de **copia** (otro conjunto de campos) se resolvio con un **panel de controles `INVISIBLE` en la misma ventana** (ids 181-196) que se muestra/oculta con `Window!.getControl(n).setVisible(0/1)` al pulsar el boton Copiar; Cancelar lo cierra. Motivo: el cambio de contexto de una 2da ventana (como la 102 de ADQ160) no estaba verificado en este entorno. `setVisible` en este uso **funciona** (probado en el servidor).
 - Una rutina de actualizacion masiva (recorre todo el archivo por el 2do canal) debe **informar cuantos registros cambio** (`Registros actualizados : N`) para que el usuario pueda ver que paso.
 
 ## 7. Verificaciones obligatorias antes de entregar
