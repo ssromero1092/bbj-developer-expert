@@ -12,7 +12,7 @@ Aplica a pantallas donde se captura una clave (area, grupo, producto...), se lee
 | `lee_parametros` (`12000-12203`) | Igual, **pero sin** `use ::bbtranslator` ni `Translator!=` |
 | `READ/WRITE/REMOVE/EXTRACT` sobre los archivos de negocio | Igual: misma clave y mismo orden de campos |
 | Recorridos con 2do canal (copiar, actualizar) | Igual |
-| Listado/Excel (`29000-30950`) | Igual; se conecta al boton Imprimir y se cambian solo 4-5 lineas (ver 4) |
+| Listado impreso (`29000-30950`) | Igual; se conecta al boton Imprimir y se cambian pocas lineas (ver 4). **El Excel NO se copia**: se rehace con el patron GEXCEL (ver 4) |
 
 ## 2. Que se reemplaza (tabla de equivalencias)
 | En metacaracter | En grafico |
@@ -48,7 +48,22 @@ Ayuda 131, Cancelar 132, Salir 134, Guardar 135, Borrar 133, Imprimir 136, mas l
 ## 4. Impresion y Excel
 - Se conecta el listado existente al boton Imprimir: `GOSUB ABRE_IMPRE_VIEW` (patron MAE420 11290-11660) en lugar de abrir `P2`; `LLENA_DISPO` -> `CALL "GIMPRIME.bbj",118,GUI` carga la lista de impresoras.
 - Ajustar `COLS=` de `ABRE_IMPRE_VIEW` al ancho del listado (MAE420 usa 170; MAE330 necesita 200 porque imprime 190 columnas). Verificado en el servidor (se ve bien).
-- Mensajes de `INPUT ... OBSERVACION` del listado/Excel -> `MSGBOX` con texto directo.
+- Mensajes de `INPUT ... OBSERVACION` del listado -> `MSGBOX` con texto directo.
+
+### Excel: patron GEXCEL (probado en el servidor)
+El Excel del original suele ser un archivo de texto con tabulaciones en una carpeta fija (`PRINT (PLANO)$22$+...+SEPA$+...`), todo como texto. En grafico se reemplaza por el patron del programa grafico de referencia que genera Excel (en el caso probado, un programa de remuneraciones y uno de contabilidad), que usa `GEXCEL.bbj` (Apache POI, genera un `.xls` real):
+1. **Rutina de archivo temporal** (se llama al iniciar el listado): `PLA$="LLAVE__:C(6*=10):title=LLAVE__:,CAMPO1:C(40*=10):title=CAMPO1:,CAMPO2:N(15*=10):title=CAMPO2:,..."; DIM CAMPOS$:PLA$`, luego `ARCTMP$=PREFIJO$+"PROG"+STR(CC)`, `ERASE ARCTMP$,ERR=*PROCEED; MKEYED ARCTMP$,[1:1:6],0,1000,ERR=...` (si falla `CC=CC+1` y reintenta) y `PLANO1=UNT; OPEN (PLANO1)ARCTMP$`. Reiniciar el contador de filas `JBN=0`.
+   - `C(n*=10)` = texto, `N(n*=10)` = numerico: **declarar como `N` lo que es numero** (dosis, dias, horas...), asi Excel los trata como numeros; el original los mandaba como texto.
+   - El campo `LLAVE__` es la clave del temporal y GEXCEL **no lo exporta**. Cada campo lleva `title=` con el titulo de la columna (sin espacios; usar `_`).
+2. **Una fila por registro**: `JBN=JBN+1; WRITE (PLANO1)STR(JBN:"000000"),campo1,campo2,...` en el mismo orden que `PLA$` (reemplaza el `PRINT (PLANO)`).
+3. **Al terminar el listado**, en este orden: `CLOSE (PRN)` primero, luego `CLOSE (PLANO1)`, luego generar el Excel y por ultimo abrirlo:
+   - `ORIGEN1$=LDIR_EXCEL$+"/PROG"+STBL("!USUARIO_COD",CODUSU$)+STR(CC)+".XLS"` y `DESTINO1$=WDIR_EXCEL$+"\PROG"+...+".XLS"` (rutas de `lee_parametros`; ya no se escribe en una carpeta fija).
+   - `CALL "GEXCEL.bbj",ARCTMP$,ORIGEN1$,DESTINO1$,CAMPOS$,NOMLIBRO$,"NombreHoja",SALXLS`. Si `SALXLS=1` (Excel tomado por otro programa) reintentar con `CC=CC+1` recalculando origen y destino; poner un **tope de reintentos** (se uso 20) para no ciclar.
+   - Si `SALXLS<>0`: `MSGBOX("No se pudo generar el Excel",...)` y no abrir.
+   - **Abrir**: `Escritorio!=java.awt.Desktop@.getDesktop()` y `Escritorio!.open(new java.io.File@(DESTINO1$),err=*next)`. En el programa de referencia la rutina termina con `GOTO` a la salida (cierra el programa); en un mantenedor debe terminar con `RETURN` para no cerrarlo.
+4. **Cierre**: agregar `PLANO1` al `CIERRA` por si se sale en medio del listado. El temporal `MKEYED` no se borra al terminar (GEXCEL no lo borra); se borra al volver a generar (`ERASE ARCTMP$`), igual que el programa de referencia.
+5. **Dependencias**: `GEXCEL.bbj` (y `GBBJ.bbj`, que usa para transferir el archivo al cliente) deben estar en la carpeta de publicos del servidor; `PREFIJO$`, `LDIR_EXCEL$` y `WDIR_EXCEL$` salen de `lee_parametros` (12130, 12170, 12182).
+6. Antes de implementar: **pedir al usuario el programa de referencia del Excel** y leer su rutina de temporal, su escritura de filas y su cierre. Respetar las columnas del Excel original (mismo contenido), cambiando solo el mecanismo.
 
 ## 5. Ayudas (GZOOM) en grafico
 Regla del usuario: usar **la misma ayuda que usa el programa original**.
@@ -81,6 +96,10 @@ Regla del usuario: usar **la misma ayuda que usa el programa original**.
 - Nombres de los `.bmp` de botones nuevos.
 
 ## 9. Trampas encontradas al hacerlo
+- Orden obligatorio al cerrar un listado con Excel: `CLOSE (PRN)` -> cerrar temporal -> `GEXCEL` -> abrir. Pedido explicito del usuario.
+- Un `ABRE_EXCEL` copiado de otro programa termina saliendo del programa (`GOTO` a la salida): cambiarlo por `RETURN`.
+- Un reintento por "Excel tomado" debe volver a **recalcular** origen y destino con el nuevo numero; si no, repite el mismo nombre.
+- Una edicion con `sed` de un rango que termina en el final del archivo puede borrar secciones completas de un `.md`: revisar con `git diff` antes de commitear.
 - Los programas de metacaracter traen saltos a lineas inexistentes (`GOSUB 20000`, `ERR=10400/10500/10300`): hay que **reponer** las rutinas de error de la referencia (10300-10600, 11000) y `DEPURAR` (20000) para que no queden rotos; el verificador solo debe marcar los que ya traia el original.
 - Cuidado con el orden de los `IF ... THEN ... ELSE ... FI` al meter `GOSUB GRABA`: usar `FI`.
 - Al generar archivos con scripts: comandos muy largos fallan (`ENAMETOOLONG`); guardar el script en un archivo y ejecutarlo. Con `sed`, usar `|` como delimitador si el texto lleva `/`.

@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.1] - 2026-11-26
+### Added
+- Receta de mantenedor simple: patron de Excel con `GEXCEL.bbj` (archivo temporal, `GEXCEL`, apertura despues de cerrar `PRN`), probado en el servidor.
+
 ## [0.3.0] - 2026-11-26
 ### Added
 - `workflows/convert-metacaracter-to-graphic.md`: flujo para convertir programas de metacaracter a grafico, con los 3 tipos de pantalla (simple, complejo, informes) y las reglas acordadas.
