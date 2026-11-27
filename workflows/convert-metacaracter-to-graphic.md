@@ -26,7 +26,7 @@ Primero clasificar la pantalla. Si es tipo 2 o 3, decirlo al usuario: la receta 
 1. **Entender**: resumir que hace el programa original (archivos, claves, flujo de captura, opciones de menu, impresion).
 2. **Inspeccionar**: leer el original completo y la referencia grafica (`.bbj` + `.arc`). Correr `tools/check_bbj_numbering.py` sobre el original y anotar los saltos a lineas inexistentes que ya trae (no son del cambio; no "arreglarlos" sin autorizacion).
 3. **Preguntar** al usuario lo que no se pueda saber del codigo (lista en la receta, seccion "Preguntas tipicas").
-4. **Proponer**: tabla campo por campo (linea original -> control/id -> rutina nueva), botones, ayudas y lo que queda "sin verificar".
+4. **Proponer**: tabla campo por campo (linea original -> control/id -> rutina nueva), botones, ayudas y lo que queda "sin verificar". **Listar los defectos del original** (saltos a lineas inexistentes, rotulos repetidos, ortografia, canales que se cierran sin abrirse) y preguntar si se corrigen; preguntar tambien si lleva periodo y si hay que agregar Excel.
 5. Esperar autorizacion e implementar (`workflows/implement-approved-change.md`).
 6. Verificar: numeracion con la herramienta, y que **todo control usado en el `.bbj` exista en el `.arc`** (ver receta).
 7. Registrar en la memoria del proyecto y, si se aprendio algo general, en esta skill.

@@ -17,6 +17,7 @@ Bitacora de actualizaciones de la skill y su base de conocimiento.
 | 2026-11-26 | knowledge/user-conventions.md, source-program-catalog.md, discovered-patterns.md, verified-capabilities.md | Convenciones (sin Translator, etiquetas sin numeros, grabar al Enter...), catalogo, patrones y capacidades sin verificar | Decisiones del usuario durante la conversion de MAE330 | Conversacion | si |
 | 2026-11-26 | references/metacaracter-to-graphic-simple.md, knowledge/discovered-patterns.md, verified-capabilities.md, source-program-catalog.md | Lo que estaba "sin verificar" pasa a probado en servidor | El usuario probo MAE330 en el servidor y todo funciona OK | Conversacion | si |
 | 2026-11-26 | references/metacaracter-to-graphic-simple.md, CHANGELOG.md, knowledge/discovered-patterns.md, verified-capabilities.md, user-conventions.md | Patron de Excel con GEXCEL.bbj (temporal, GEXCEL, apertura) y trampas asociadas | El usuario pidio rehacer el Excel de MAE330 con la logica de un programa de referencia y lo probo en el servidor | Conversacion, MAE330 | si |
+| 2026-11-26 | references/metacaracter-to-graphic-simple.md, knowledge/discovered-patterns.md, source-program-catalog.md, user-conventions.md, CHANGELOG.md | Decisiones de la 2da conversion (MAE340): sin periodo, codigo inexistente = alta directa, corregir defectos del original, Excel nuevo, CAPTURA sin perder decimales | Respuestas del usuario a la propuesta de MAE340 | Conversacion, MAE340 | si |
 
 ## Regla
 No reemplazar conocimiento previo sin registrar motivo y evidencia.

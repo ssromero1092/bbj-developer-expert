@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.2] - 2026-11-26
+### Added
+- Receta de mantenedor simple: decisiones de la segunda conversion (sin periodo, alta directa de codigo inexistente, correccion de defectos del original, Excel nuevo, `CAPTURA` sin perder decimales).
+
 ## [0.3.1] - 2026-11-26
 ### Added
 - Receta de mantenedor simple: patron de Excel con `GEXCEL.bbj` (archivo temporal, `GEXCEL`, apertura despues de cerrar `PRN`), probado en el servidor.

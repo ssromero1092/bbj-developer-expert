@@ -95,7 +95,18 @@ Regla del usuario: usar **la misma ayuda que usa el programa original**.
 - Rutas fijas del original (p. ej. ruta de pruebas en PC local): se dejan igual?
 - Nombres de los `.bmp` de botones nuevos.
 
+## 8b. Decisiones de diseno confirmadas en la segunda conversion (mantenedor de 10 valores numericos)
+- **Codigo que no existe = crearlo, sin boton "Crear".** En las pantallas graficas, si el usuario ingresa un codigo (p. ej. un producto) que no existe en el maestro, la rutina llama directo al programa de alta del maestro (`sysgui!.flushEvents(); CALL "MAE108.bbj",1,""; PRINT(GUI)'CONTEXT'(0),'FOCUS'(id)`). El original metacaracter usaba una tecla F2 "Crear": **no se convierte en boton**.
+- **No todo programa usa periodo.** El encabezado de la plantilla (MAE420/MAE330) trae `STATICTEXT 300` y `LISTBUTTON 101` (periodo) y la rutina `INICIO` con `GPERIODO.bbj`. Si el original **no usa `APER$`** y abre los archivos sin sufijo de periodo, se quitan del `.arc` esos dos controles, se quita el `CALL "GPERIODO.bbj"` y `INICIO` solo habilita el primer campo. Se **conserva** `LISTBUTTON 118` (impresora, invisible), `STATICTEXT 219` y el `GROUPBOX 220`: `ABRE_IMPRE_VIEW` y `LLENA_DISPO` los usan.
+- **Corregir los defectos del original, avisando.** Con autorizacion del usuario se corrigen: saltos a lineas inexistentes, rotulos repetidos o mal puestos (dos campos "ZINC" cuando uno era "FIERRO"), ortografia de etiquetas y titulos del listado, y el `CIERRA` que cierra canales que el programa nunca abre. **Solo los datos y los formatos de archivo no se tocan.** Listar los defectos en la propuesta y preguntar antes de corregir.
+- **Agregar el Excel si el original no lo tenia**, para consistencia con el resto de los programas (patron GEXCEL de la seccion 4); decision del usuario.
+- **Varios campos numericos iguales (p. ej. 10):** generar las rutinas de campo con un script en vez de escribirlas a mano; cada una valida con `NUM(X0$,ERR=ERROR_OBJ)` y rango, formatea con una rutina comun (`FORMATO`), y con `SW=1` graba al Enter. El ultimo campo siempre llama a `GRABA`.
+- **No perder decimales al guardar:** `CAPTURA` compara el texto de cada EDIT con el valor leido del archivo ya formateado; si es igual, **no lo reconvierte** (conserva el valor exacto del archivo) y solo parsea los campos que el usuario cambio.
+- **Variables del listado distintas de las del registro en pantalla** (`LPRO$`, `W1..W10` frente a `PRO$`, `V1..V10`): si el listado reutiliza las del registro, al imprimir con un producto en pantalla se pierde su dato.
+
 ## 9. Trampas encontradas al hacerlo
+- Un `DOM=` o un salto del original que apunta a una linea que no existe es un **defecto del original** (aqui, `DOM=1100` rompia al ingresar un registro nuevo). Anotarlo y corregirlo en el nuevo flujo; el verificador debe quedar sin saltos rotos si el usuario autorizo corregirlos.
+- Un `ON n GOTO a,b,c...` con destinos desfasados (apuntaba al campo equivocado) desaparece al eliminar el menu "numero a modificar".
 - Orden obligatorio al cerrar un listado con Excel: `CLOSE (PRN)` -> cerrar temporal -> `GEXCEL` -> abrir. Pedido explicito del usuario.
 - Un `ABRE_EXCEL` copiado de otro programa termina saliendo del programa (`GOTO` a la salida): cambiarlo por `RETURN`.
 - Un reintento por "Excel tomado" debe volver a **recalcular** origen y destino con el nuevo numero; si no, repite el mismo nombre.

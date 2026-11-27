@@ -23,6 +23,10 @@ Registrar solo convenciones confirmadas por el usuario o con evidencia suficient
 | Botones de acciones extra (copiar, actualizar) con icono `.bmp` propio (`COPIAR.bmp`, `ACTUALIZA.bmp`) | confirmada | Pedido del usuario | Conversacion |
 | Rutas de prueba en PC local dentro de un programa (p. ej. una ruta de maestros con unidad y carpeta fijas) se dejan como estan | confirmada | Respuesta del usuario | Conversacion |
 | El Excel de un programa convertido se genera con el patron GEXCEL del programa de referencia (temporal MKEYED + `GEXCEL.bbj`), no con texto y tabulaciones; se cierra el PRN antes de generar y se abre el Excel al terminar | confirmada | Pedido del usuario, probado en servidor | Conversacion |
+| En pantallas graficas un codigo inexistente se crea directo (llamando al programa de alta del maestro); no se agrega boton "Crear" ni se usa una tecla F2 | confirmada | Respuesta del usuario (MAE340) | Conversacion |
+| Al convertir, se corrigen los defectos del original (saltos rotos, rotulos y ortografia), avisando en la propuesta; los datos y formatos de archivo no se tocan | confirmada | Respuesta del usuario (MAE340) | Conversacion |
+| Si el programa convertido no tenia Excel, se agrega con el patron GEXCEL para llevar consistencia | confirmada | Respuesta del usuario (MAE340) | Conversacion |
+| Un mantenedor sin periodo no lleva combo de periodo en la pantalla | confirmada | Respuesta del usuario (MAE340) | Conversacion |
 
 ## Convenciones pendientes de confirmar
 | Tema | Hipotesis | Que falta confirmar |
