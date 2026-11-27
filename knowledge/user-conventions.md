@@ -22,6 +22,7 @@ Registrar solo convenciones confirmadas por el usuario o con evidencia suficient
 | Usar la misma ayuda (GZOOM/GZOOMLH/GZOOM2) que usa el programa original | confirmada | Pedido del usuario | Conversacion |
 | Botones de acciones extra (copiar, actualizar) con icono `.bmp` propio (`COPIAR.bmp`, `ACTUALIZA.bmp`) | confirmada | Pedido del usuario | Conversacion |
 | Rutas de prueba en PC local dentro de un programa (p. ej. una ruta de maestros con unidad y carpeta fijas) se dejan como estan | confirmada | Respuesta del usuario | Conversacion |
+| El Excel de un programa convertido se genera con el patron GEXCEL del programa de referencia (temporal MKEYED + `GEXCEL.bbj`), no con texto y tabulaciones; se cierra el PRN antes de generar y se abre el Excel al terminar | confirmada | Pedido del usuario, probado en servidor | Conversacion |
 
 ## Convenciones pendientes de confirmar
 | Tema | Hipotesis | Que falta confirmar |

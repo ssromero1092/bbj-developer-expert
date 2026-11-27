@@ -15,6 +15,8 @@ Caracteristicas BBj verificadas por documentacion oficial BASIS o por evidencia 
 | `Window!.getControl(n).setVisible(0/1)` para mostrar u ocultar un panel de controles | 22.14 | probada en servidor | MAE330 8000-9240 | Panel de copia en la misma ventana, funciona |
 | `GZOOMLH.bbj` con MAEPROD en pantalla grafica | 22.14 | probada en servidor | ADQ160 2821, MAE330 0915 | Funciona en MAE330 |
 | `BBTranslator` / `getTranslation` | - | **no funciona** (deprecado) | Dicho por el usuario | No usar en ningun programa |
+| `GEXCEL.bbj` (Apache POI HSSF) para generar `.xls` desde un MKEYED con plantilla `DIM CAMPOS$:PLA$` | 22.14 | probada en servidor | MAE330 31030 | `LLAVE__` no se exporta; reintentar si `SALXLS=1` |
+| `java.awt.Desktop@.getDesktop().open(new java.io.File@(ruta))` para abrir el Excel generado | 22.14 | probada en servidor | MAE330 31065-31070 | Abre en la maquina del usuario |
 
 ## Politica
 - No promover una hipotesis a capacidad verificada sin fuente confiable.
