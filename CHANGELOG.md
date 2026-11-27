@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.3] - 2026-11-26
+### Changed
+- Segunda conversion (MAE340) probada en el servidor: patrones de mantenedor sin periodo, alta por codigo inexistente y Excel nuevo pasan a verificados.
+
 ## [0.3.2] - 2026-11-26
 ### Added
 - Receta de mantenedor simple: decisiones de la segunda conversion (sin periodo, alta directa de codigo inexistente, correccion de defectos del original, Excel nuevo, `CAPTURA` sin perder decimales).
