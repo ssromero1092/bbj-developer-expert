@@ -56,7 +56,7 @@ Flujo:
 - En cambios de campos con ayuda (GZOOM/GZOOMWD/GZOOMLH o similares), tratar el cambio como dependiente de maestros y de formato/estructura de archivo.
 - En la primera invocacion de la skill en una nueva sesion, verificar una sola vez la sincronizacion del repositorio antes de analizar o editar.
 - Si el repositorio es Git y el remoto tiene cambios, ejecutar solo: git fetch origin y luego git pull --ff-only origin master.
-- No ejecutar git push, git merge, git commit, git rebase ni cambiar ramas protegidas sin autorizacion explicita del usuario.
+- No ejecutar git push, git merge, git commit, git rebase ni cambiar ramas protegidas sin autorizacion explicita del usuario. **Unica excepcion**: `tools/save_learning.py` (ver [capturar aprendizaje](./workflows/capture-learning.md)), que solo crea una rama `aprendizaje/*` desde `origin/master` con una nota en `knowledge/inbox/`, nunca toca `master` ni la rama actual.
 - Si hay cambios locales sin confirmar, no hacer pull automatico; informar que el repo esta sucio y esperar instruccion.
 - Si falta informacion critica, declarar incertidumbre y preguntar.
 
@@ -74,6 +74,7 @@ Cuando el requerimiento sea agregar/modificar un campo con boton de ayuda:
 3. Construir propuesta con [propuesta de cambio](./workflows/propose-change.md).
 4. Si hay autorizacion explicita, seguir [implementacion aprobada](./workflows/implement-approved-change.md).
 5. Cerrar con [revision de cambios](./workflows/review-changes.md).
+6. Al terminar, si hubo algo nuevo que aprender, ejecutar [capturar aprendizaje](./workflows/capture-learning.md) (rama de revision automatica).
 
 ### Si el requerimiento es pasar un programa de metacaracter a grafico
 Seguir [convertir de metacaracter a grafico](./workflows/convert-metacaracter-to-graphic.md) (clasifica el tipo de pantalla y fija las reglas) y, para mantenedores simples, la receta [metacaracter a grafico: mantenedor simple](./references/metacaracter-to-graphic-simple.md). El usuario entrega el programa en `metacaracter/pgms/`; se edita solo la copia en `pgms/` y se crea el `.arc` en `brc/esp/`, tomando como patron visual el programa grafico de referencia que el usuario indique. **No usar `Translator`/`getTranslation`** (deprecado, no funciona en ningun sistema BBj de la empresa).
@@ -105,6 +106,8 @@ Seguir [convertir de metacaracter a grafico](./workflows/convert-metacaracter-to
 ## Herramientas
 - `tools/check_bbj_numbering.py <archivo.bbj>`: verifica numeracion ascendente, ASCII y destinos de salto. Usarla despues de cada edicion.
 - [Verificar numeracion y mantener copias](./workflows/verify-numbering-and-copies.md)
+- `tools/learning_hook.py`: hook `Stop` que dispara la captura de aprendizaje sin intervencion del usuario.
+- `tools/save_learning.py --title T --body-file F`: sube una nota de aprendizaje a una rama de revision. Ver [capturar aprendizaje](./workflows/capture-learning.md).
 
 ## Formato de salida recomendado
 Usar esta estructura para respuestas de analisis:
